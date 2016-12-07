@@ -4,7 +4,8 @@ import { NavController } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
-import { ContactPage } from '../contact/contact';
+import { TabsPage } from '../tabs/tabs';
+import { SubscribePage } from '../subscribe/subscribe';
 
 
 @Component({
@@ -14,7 +15,9 @@ import { ContactPage } from '../contact/contact';
 export class LoginPage {
   logindata: any ={};
   logError: any;
-  public dataObject;
+  dataObject;
+  SubscribePageRoot: any = SubscribePage;
+
   constructor(
     public navCtrl: NavController,
     public http: Http,
@@ -22,7 +25,12 @@ export class LoginPage {
   ) {}
 
   ionViewDidLoad() {
-    console.log('Hello LoginPage Page');
+    this.storage.get('token').then((token) => {
+    console.log('token tabs storage : ' + token);
+      if(token != null){
+        this.navCtrl.setRoot(TabsPage, {  });
+      }
+    });
   }
   performLogin(logindata){
 		console.log(logindata);
@@ -43,16 +51,13 @@ export class LoginPage {
             this.storage.set('token', response.token).then((token) => {
               console.log('token set storage : ' + token);
             });
-
               console.log('Authentication Complete')
-              this.navCtrl.push(ContactPage, {  });
+              this.navCtrl.setRoot(TabsPage, {  });
           };
           console.log(response);
         },
         this.logError,
         () => {}
       );
-
-
   }
 }

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
-import { HomePage } from '../home/home';
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
-import { LoginPage } from '../login/login';
+import { Storage } from '@ionic/storage';
+import { NavController } from 'ionic-angular';
+
+import { LoginPage }   from '../login/login';
+import { BooksPage }   from '../books/books';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -11,12 +12,25 @@ import { LoginPage } from '../login/login';
 export class TabsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  tab1Root: any = HomePage;
-  tab2Root: any = AboutPage;
-  tab3Root: any = ContactPage;
-  tab4Root: any = LoginPage;
+  tab1Root: any = BooksPage;
 
-  constructor() {
+  constructor(
+    public navCtrl: NavController,
+    public storage: Storage) {}
+  /*isToken: boolean = false;
+
+  ionViewDidLoad() {
+    this.storage.get('token').then((token) => {
+      console.log('token tabs storage : ' + token);
+      this.isToken = true;
+    });
+  }
+*/
+
+  logout(){
+    this.storage.remove('token');
+    console.log('logout');
+    this.navCtrl.setRoot(LoginPage, {  });
 
   }
 }
