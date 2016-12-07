@@ -5,6 +5,7 @@ import { NavController } from 'ionic-angular';
 
 import { LoginPage }   from '../login/login';
 import { BooksPage }   from '../books/books';
+import { BookscodePage }   from '../bookscode/bookscode';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -13,6 +14,7 @@ export class TabsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   tab1Root: any = BooksPage;
+  tab2Root: any = BookscodePage;
 
   constructor(
     public navCtrl: NavController,
