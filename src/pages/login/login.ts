@@ -16,8 +16,7 @@ export class LoginPage {
   logindata: any ={};
   logError: any;
   dataObject;
-  SubscribePageRoot: any = SubscribePage;
-
+  SubscribePageroot: any = SubscribePage;
   constructor(
     public navCtrl: NavController,
     public http: Http,
@@ -32,6 +31,13 @@ export class LoginPage {
       }
     });
   }
+
+  subscribe() {
+
+      this.navCtrl.setRoot(SubscribePage, {  });
+
+  }
+
   performLogin(logindata){
 		console.log(logindata);
 
