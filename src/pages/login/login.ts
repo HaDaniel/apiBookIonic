@@ -32,19 +32,18 @@ export class LoginPage {
     });
   }
 
-  subscribe() {
 
-      this.navCtrl.setRoot(SubscribePage, {  });
-
-  }
 
   performLogin(logindata){
-		console.log(logindata);
+  console.log("logindata",logindata);
+    var body = JSON.stringify({
+      'name': logindata.name,
+      'password': logindata.password
+    });
 
-    var body = `name=${logindata.name}&password=${logindata.password}`;
-    console.log(body);
+    console.log("body", body);
     var headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    headers.append('Content-Type', 'application/json');
 
     this.http
       .post('http://localhost:4000/api/authenticate', body, { headers: headers })
@@ -57,6 +56,7 @@ export class LoginPage {
             this.storage.set('token', response.token).then((token) => {
               console.log('token set storage : ' + token);
             });
+            this.storage.set('userId', response.userId)
               console.log('Authentication Complete')
               this.navCtrl.setRoot(TabsPage, {  });
           };
@@ -65,5 +65,9 @@ export class LoginPage {
         this.logError,
         () => {}
       );
+  }
+  subscribe() {
+
+      this.navCtrl.setRoot(SubscribePage, {  });
   }
 }

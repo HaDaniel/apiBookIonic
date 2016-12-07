@@ -7,14 +7,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>subscribe</ion-title>
+    <ion-title>S'inscrire</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <button light ion-button color="light" block (click)="login()">
-    Se connecter
-  </button>
+  <form (submit)="post(formdata)">
+    <ion-item>
+       <ion-label floating>Nom</ion-label>
+       <ion-input type="text" [(ngModel)]="formdata.name" name="name"  ></ion-input>
+    </ion-item>
+    <ion-item>
+       <ion-label floating>Mot de passe</ion-label>
+       <ion-input type="password" [(ngModel)]="formdata.password" name="password"  ></ion-input>
+    </ion-item>
+
+    <button ion-button block>Valider</button>
+    <button light ion-button color="light" block (click)="login()">Retour</button>
+
+  </form>
 </ion-content>

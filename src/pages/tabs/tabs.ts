@@ -30,7 +30,14 @@ export class TabsPage {
 */
 
   logout(){
+    this.storage.get('token').then((token) => {
+      console.log('logout token  : ' + token);
+    });
     this.storage.remove('token');
+    this.storage.remove('userId');
+    this.storage.get('token').then((token) => {
+      console.log('after remove token  : ' + token);
+    });
     console.log('logout');
     this.navCtrl.setRoot(LoginPage, {  });
 
