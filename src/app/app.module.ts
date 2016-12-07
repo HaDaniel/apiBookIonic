@@ -13,7 +13,8 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { BooksPage } from '../pages/books/books';
-import { SubscribePage } from '../subscribe/subscribe';
+import { SubscribePage } from '../pages/subscribe/subscribe';
+import { BookscodePage } from '../pages/bookscode/bookscode';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SubscribePage } from '../subscribe/subscribe';
     TabsPage,
     LoginPage,
     BooksPage,
-    SubscribePage
+    SubscribePage,
+    BookscodePage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -41,7 +43,8 @@ import { SubscribePage } from '../subscribe/subscribe';
     TabsPage,
     LoginPage,
     BooksPage,
-    SubscribePage
+    SubscribePage,
+    BookscodePage
   ],
   providers: [ Storage, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
