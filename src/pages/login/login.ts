@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { FormBuilder, Validators } from '@angular/forms';
+// import { Validators } from '@angular/forms';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
+import { ContactPage } from '../contact/contact';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Storage } from '@ionic/storage';
 export class LoginPage {
   logindata: any ={};
   logError: any;
-
+  public dataObject;
   constructor(
     public navCtrl: NavController,
     public http: Http,
@@ -36,14 +37,20 @@ export class LoginPage {
       .map(response => response.json())
       .subscribe(
         response => {
-          this.storage.set('token', response.token)
-          console.log(response)
+        console.log(response.success);
+          this.dataObject = response;
+          if(response.success == true){
+            this.storage.set('token', response.token).then((token) => {
+              console.log('token set storage : ' + token);
+            });
+
+              console.log('Authentication Complete')
+              this.navCtrl.push(ContactPage, {  });
+          };
+          console.log(response);
         },
         this.logError,
-        () => {
-          console.log('Authentication Complete')
-          this.storage.get('token')
-        }
+        () => {}
       );
 
 
