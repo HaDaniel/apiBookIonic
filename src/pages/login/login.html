@@ -1,0 +1,33 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form (submit)="performLogin(logindata)">
+    <div *ngIf="dataObject">
+       <ion-item>
+            <p> {{dataObject.message}}</p>
+       </ion-item>
+     </div>
+
+
+        <ion-item>
+           <ion-label floating>Nom</ion-label>
+           <ion-input type="text" [(ngModel)]="logindata.name" name="name"  ></ion-input>
+        </ion-item>
+        <ion-item>
+           <ion-label floating>Mot de passe</ion-label>
+           <ion-input type="password" [(ngModel)]="logindata.password" name="password"  ></ion-input>
+        </ion-item>
+
+        <button ion-button  block>Se connecter</button>
+
+
+  </form>
+
+</ion-content>
