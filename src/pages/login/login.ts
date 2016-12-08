@@ -47,7 +47,8 @@ export class LoginPage {
     headers.append('Content-Type', 'application/json');
 
     this.http
-      .post('http://localhost:4000/api/authenticate', body, { headers: headers })
+      // .post('http://localhost:4000/api/authenticate', body, { headers: headers })
+      .post('https://apibook.herokuapp.com/api/authenticate', body, { headers: headers })
       .map(response => response.json())
       .subscribe(
         response => {

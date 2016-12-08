@@ -37,7 +37,8 @@ export class SubscribePage {
         headers.append('Content-Type', 'application/json');
 
         this.http
-          .post('http://localhost:4000/api/create', body, { headers: headers })
+          // .post('http://localhost:4000/api/create', body, { headers: headers })
+          .post('https://apibook.herokuapp.com/api/create', body, { headers: headers })
           .map(response => response.json())
           .subscribe(
             response => {
