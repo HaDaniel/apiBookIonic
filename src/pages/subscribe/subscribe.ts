@@ -3,7 +3,6 @@ import { NavController } from 'ionic-angular';
 import { LoginPage }   from '../login/login';
 import { Http, Headers } from '@angular/http';
 import { Storage } from '@ionic/storage';
-import { TabsPage } from '../tabs/tabs';
 import 'rxjs/add/operator/map';
 
 

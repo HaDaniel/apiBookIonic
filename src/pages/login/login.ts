@@ -65,7 +65,8 @@ export class LoginPage {
         this.logError,
         () => {}
       );
-  }
+    }
+
   subscribe() {
 
       this.navCtrl.setRoot(SubscribePage, {  });

@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-
+import {BooksService} from '../../providers/books-service';
 /*
   Generated class for the Books page.
 
@@ -12,7 +12,8 @@ import 'rxjs/add/operator/map';
 */
 @Component({
   selector: 'page-books',
-  templateUrl: 'books.html'
+  templateUrl: 'books.html',
+  providers: [BooksService]
 })
 export class BooksPage {
 
@@ -21,13 +22,29 @@ export class BooksPage {
   error: string;
   booksRead: any;
   booksUnRead: any;
+  user: any;
 
   constructor(
     public navCtrl: NavController,
     public http: Http,
-    public storage: Storage
+    public storage: Storage,
+    public booksService: BooksService
   ) {}
 
+
+
+  ionViewDidLoad(){
+      this.booksService.getUserBook().then(data => {
+          this.user = data;
+          this.booksRead = this.user.read;
+            console.log('  this.booksRead' ,   this.booksRead);
+          this.booksUnRead = this.user.unread;
+      }).catch(err => {
+        console.log('Error loading books');
+      });
+    }
+
+/*
   ionViewDidLoad() {
 
     this.storage.get('token').then((token) => {
@@ -57,6 +74,6 @@ export class BooksPage {
       });
 
     });
-  }
+  }*/
 
 }

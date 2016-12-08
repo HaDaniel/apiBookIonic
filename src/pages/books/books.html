@@ -7,17 +7,37 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>books</ion-title>
+    <ion-title>Livres</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
+
 <ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let bookRead of booksRead">
-      <h2>{{bookRead.titre}}</h2>
-      <h3>{{bookRead.auteur}}</h3>
-    </ion-item>
-  </ion-list>
+  <div *ngIf='booksRead'>
+    <h1>Book(s) Read</h1>
+    <ion-list>
+      <button ion-item *ngFor="let bookRead of booksRead" (click)="read($event, bookRead)">
+         <p>Titre : {{bookRead.titre}}</p>
+         <p>Auteur : {{bookRead.auteur}}</p>
+         <div class="book-description" item-right>
+           {{bookRead.description}}
+         </div>
+       </button>
+    </ion-list>
+  </div>
+  <div *ngIf='booksUnRead'>
+    <h1>Book(s) Unead</h1>
+    <ion-list>
+      <button ion-item *ngFor="let bookUnRead of booksUnRead" (click)="read($event, bookUnRead)">
+         <p>Titre : {{bookUnRead.titre}}</p>
+         <p>Auteur : {{bookUnRead.auteur}}</p>
+         <div class="book-description" item-right>
+           {{bookUnRead.description}}
+         </div>
+       </button>
+    </ion-list>
+  </div>
+
 </ion-content>
