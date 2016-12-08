@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import { BooksPage } from '../pages/books/books';
 import { SubscribePage } from '../pages/subscribe/subscribe';
 import { BookscodePage } from '../pages/bookscode/bookscode';
+import { BooksDescriptionPage } from '../pages/books-description/books-description';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BookscodePage } from '../pages/bookscode/bookscode';
     LoginPage,
     BooksPage,
     SubscribePage,
-    BookscodePage
+    BookscodePage,
+    BooksDescriptionPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -35,7 +37,8 @@ import { BookscodePage } from '../pages/bookscode/bookscode';
     LoginPage,
     BooksPage,
     SubscribePage,
-    BookscodePage
+    BookscodePage,
+    BooksDescriptionPage
   ],
   providers: [ Storage, {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })

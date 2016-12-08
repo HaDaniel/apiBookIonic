@@ -6,13 +6,15 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>/books/description</ion-title>
-  </ion-navbar>
+       <ion-title> Description de <span [innerHTML]="book.titre"></span></ion-title>
+
 
 </ion-header>
 
 
 <ion-content padding>
 
+  <p>Titre : {{book.titre}}</p>
+  <p>Auteur : {{book.auteur}}</p>
+  <p>Description : {{book.description}}</p>
 </ion-content>

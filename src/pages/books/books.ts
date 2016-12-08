@@ -4,6 +4,8 @@ import { Storage } from '@ionic/storage';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {BooksService} from '../../providers/books-service';
+import {BooksDescriptionPage} from '../books-description/books-description';
+
 /*
   Generated class for the Books page.
 
@@ -42,38 +44,11 @@ export class BooksPage {
       }).catch(err => {
         console.log('Error loading books');
       });
-    }
+  }
 
-/*
-  ionViewDidLoad() {
+  read(event, book){
+      this.navCtrl.setRoot(BooksDescriptionPage, { book: book });
+  }
 
-    this.storage.get('token').then((token) => {
-
-      this.storage.get('userId').then((userId) => {
-        var userId = userId;
-
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('x-access-token', token);
-
-        if(token != null){
-
-          this.http
-            .get('http://localhost:4000/api/users/' + userId, { headers: headers })
-            .map(response => response.json())
-            .subscribe(
-                response => {
-                  console.log(response.read[0]);
-                  this.booksRead = response.read;
-                  this.booksUnRead = response.unread;
-                }
-            );
-
-        }
-
-      });
-
-    });
-  }*/
 
 }
