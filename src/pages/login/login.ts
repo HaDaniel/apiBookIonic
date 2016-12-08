@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../tabs/tabs';
 import { SubscribePage } from '../subscribe/subscribe';
+import { BookscodePage } from '../bookscode/bookscode';
 
 
 @Component({
@@ -67,8 +68,14 @@ export class LoginPage {
       );
     }
 
+
   subscribe() {
 
       this.navCtrl.setRoot(SubscribePage, {  });
   }
+
+  scan() {
+      this.navCtrl.setRoot(BookscodePage, {  });
+  }
+
 }

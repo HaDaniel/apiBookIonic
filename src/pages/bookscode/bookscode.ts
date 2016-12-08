@@ -3,6 +3,8 @@ import { NavController, AlertController } from 'ionic-angular';
 import { BarcodeScanner} from 'ionic-native';
 import { Storage } from '@ionic/storage';
 import { Http, Headers } from '@angular/http';
+import {BarcodeService} from '../../providers/barcode-service';
+import {BooksService} from '../../providers/books-service';
 
 /*
   Generated class for the Bookcode page.
@@ -12,7 +14,8 @@ import { Http, Headers } from '@angular/http';
 */
 @Component({
   selector: 'page-bookcode',
-  templateUrl: 'bookscode.html'
+  templateUrl: 'bookscode.html',
+  providers: [BarcodeService,BooksService],
 })
 export class BookscodePage {
 
@@ -22,11 +25,34 @@ export class BookscodePage {
     public navCtrl: NavController,
     public alertCtrl: AlertController,
     public http: Http,
-    public storage: Storage) {
+    public storage: Storage,
+    public barcodeService: BarcodeService,
+    public booksService: BooksService) {
   }
 
+  scanISBM(){
+    this.booksService.ifBookExist('12').then(data => {
+        this.isbnData = data;
+        if(this.isbnData.success == false)
+        {
+          this.barcodeService.getBookISBN().then(data => {
+              console.log('  data isbn ' ,  data);
+          }).catch(err => {
+            console.log('Error get  books');
+          });
+        }
+    }).catch(err => {
+      console.log('Error get  books');
+    });
+    /*this.barcodeService.getBookISBN().then(data => {
+        console.log('  data isbn ' ,  data);
+    }).catch(err => {
+      console.log('Error get  books');
+    });*/
 
-  scan() {
+  }
+  /*scan() {
+
     this.storage.get('token').then((token) => {
 
       this.storage.get('userId').then((userId) => {
@@ -59,7 +85,7 @@ export class BookscodePage {
     BarcodeScanner.scan().then((barcodeData) => {
       let alert = this.alertCtrl.create({
          title: "Success!",
-         subTitle: "",
+         subTitle: barcodeData,
          buttons: ['close']
       });
       alert.present();
@@ -74,5 +100,5 @@ export class BookscodePage {
       alert.present();
     });
   }
-
+*/
 }
